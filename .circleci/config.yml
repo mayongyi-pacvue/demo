@@ -35,7 +35,8 @@ jobs:
             - target
   deploy:
     machine:
-      image: ubuntu-2404:2023.07.2
+      image: ubuntu-2204:2024.04.4
+    resource_class: medium
     steps:
       - attach_workspace:
           at: .
