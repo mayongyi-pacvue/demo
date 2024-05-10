@@ -43,7 +43,7 @@ jobs:
       - run:
           name: Deploy Over SSH
           command: |
-            ssh ma@172.27.233.10 "java -jar ./target/demo-1.0-SNAPSHOT.jar"
+            ssh $SSH_USER@$SSH_HOST "java -jar ./target/demo-1.0-SNAPSHOT.jar"
 
 # Orchestrate jobs using workflows
 # See: https://circleci.com/docs/workflows/ & https://circleci.com/docs/configuration-reference/#workflows
