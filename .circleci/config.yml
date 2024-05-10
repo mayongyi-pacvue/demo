@@ -2,8 +2,8 @@
 # See: https://circleci.com/docs/configuration-reference
 version: 2.1
 
-orbs:
-  ssh-tools: circleci/ssh-tools@2.1.0
+#orbs:
+#  ssh-tools: circleci/ssh-tools@2.1.0
 
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/jobs-steps/#jobs-overview & https://circleci.com/docs/configuration-reference/#jobs
@@ -43,9 +43,9 @@ jobs:
     steps:
       - attach_workspace:
           at: .
-      - ssh-tools/install-ssh-key:
-          fingerprints:
-            - "SHA256:uxLi5Ufjh51wOUqeTgiizMyXbSPArs6Navn0vHvNIHE"
+#      - ssh-tools/install-ssh-key:
+#          fingerprints:
+#            - "SHA256:uxLi5Ufjh51wOUqeTgiizMyXbSPArs6Navn0vHvNIHE"
       - run:
           name: Deploy Over SSH
           command: |
