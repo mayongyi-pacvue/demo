@@ -28,6 +28,21 @@ jobs:
       - run:
           name: Test
           command: mvn test
+      # 持久化文件到工作区
+      - persist_to_workspace:
+          root: .
+          paths:
+            - target
+  deploy:
+    machine:
+      image: ubuntu-2404:2023.07.2
+    steps:
+      - attach_workspace:
+          at: .
+      - run:
+          name: Deploy Over SSH
+          command: |
+            ssh ma@172.27.233.10 "java -jar ./target/demo-1.0-SNAPSHOT.jar
 
 # Orchestrate jobs using workflows
 # See: https://circleci.com/docs/workflows/ & https://circleci.com/docs/configuration-reference/#workflows
@@ -36,3 +51,10 @@ workflows:
     # Inside the workflow, you define the jobs you want to run.
     jobs:
       - build-and-test
+      - deploy:
+          requires:
+            - build-and-test
+          filters:
+            branches:
+              only:
+                - circleci-project-setup
